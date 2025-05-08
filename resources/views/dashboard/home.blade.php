@@ -14,7 +14,7 @@
         <div class="card mb-4">
             <div class="card-header">
                 {{-- <i class=""></i> --}}
-                <a href="{{ route('index.create') }}" class="btn btn-sm btn-primary">Tambah data</a>
+                <a href="{{ route('products.create') }}" class="btn btn-sm btn-primary">Tambah data</a>
             </div>
             <div class="card-body">
                 <table id="datatablesSimple">

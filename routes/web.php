@@ -8,7 +8,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\TransactionDetailController;
 use App\Http\Controllers\TransactionController;
 
-route::get("/", [ProductController::class, 'index'])->name('index.index');
+Route::get("/", [ProductController::class, 'index'])->name('product.index');
 Route::get('/', [HomeController::class, 'index']);
 Route::resource('categories', CategoryController::class);
 Route::resource('customers', CustomerController::class);

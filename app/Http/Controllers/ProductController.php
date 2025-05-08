@@ -13,7 +13,7 @@ class ProductController extends Controller
     public function index()
     {
         $product = Product::all();
-        return view('product.index', compact('product'));
+        return view('dashboard.home', compact('product'));
     }
 
     /**
