@@ -11,7 +11,6 @@
             <li class="breadcrumb-item active">Dashboard</li>
         </ol>
  
-        <div class="card mb-4">
             <div class="card-header">
                 {{-- <i class=""></i> --}}
                 <a href="{{ route('products.create') }}" class="btn btn-sm btn-primary">Tambah data</a>
