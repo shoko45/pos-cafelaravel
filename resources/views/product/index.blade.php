@@ -1,4 +1,4 @@
-@extends('layoutes.main')
+@extends('layouts.main')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -14,6 +14,7 @@
             <div class="card-header">
                 {{-- <i class=""></i> --}}
                 <a href="{{ route('products.create') }}" class="btn btn-sm btn-primary">Tambah data</a>
+                <a href="{{ route('index.edit', $k->id) }}" class="btn btn-sm btn-warning">edit</a>
             </div>
             <div class="card-body">
                 <table id="datatablesSimple">
@@ -40,7 +41,7 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach ( $produk as $k )
+                        @foreach ( $products as $k )
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $k->nama }}</td>
@@ -58,7 +59,7 @@
                             </td>
                             <td>
                                 <a href="" class="btn btn-sm btn-secondary">show</a>
-                                <a href="{{ route('index.edit', $k->id) }}" class="btn btn-sm btn-warning">edit</a>
+                                <a href="{{ route('products.edit', $k->id) }}" class="btn btn-sm btn-warning">edit</a>
                                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{$k->id}}">
                                     hapus
                                 </button>
@@ -69,28 +70,4 @@
                 </table>
             </div>
         </div>
-    </div>
 @endsection
-                </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
-    </body>
-</html>
