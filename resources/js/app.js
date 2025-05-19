@@ -1,2 +1,7 @@
-[InternetShortcut]
-URL=file///c%3A/Users/Lenovo1/POS_CAFE_APK/resources/js/app.js
+import './bootstrap';
+
+import Alpine from 'alpinejs';
+
+window.Alpine = Alpine;
+
+Alpine.start();
