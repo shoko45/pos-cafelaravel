@@ -28,8 +28,8 @@ class Transaction extends Model
     /**
      * Relasi satu ke banyak dengan OrderDetail
      */
-    public function transaksiDetails()
+    public function transactiondetails()
     {
-        return $this->hasMany(OrderDetail::class, 'transaksi_id');
+        return $this->hasMany(TransactionDetail::class, 'transaksi_id');
     }
 }

@@ -101,9 +101,9 @@
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Start Bootstrap
-                    </div>
+                <div class="small">Logged in as:</div>
+                    {{ Auth::user()->name ?? 'Guest' }}
+                </div>
                 </nav>
             </div>
  
@@ -116,13 +116,6 @@
  
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
-                        <div class="d-flex justify-content-start small">
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
                     </div>
                 </footer>                
             </div>

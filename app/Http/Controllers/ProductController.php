@@ -78,53 +78,60 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'nama' => 'required|max:45',
-            'jenis' => 'required|max:45',
-            'harga_jual' => 'required|numeric',
-            'harga_beli' => 'required|numeric',
-            'foto' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-        ]);
+{
+    $request->validate([
+        'nama' => 'required|max:45',
+        'jenis' => 'required|max:45',
+        'harga_jual' => 'required|numeric',
+        'harga_beli' => 'required|numeric',
+        'foto' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+    ], [
+        'nama.required' => 'Nama wajib diisi',
+        'nama.max' => 'Nama maksimal 45 karakter',
+        'jenis.required' => 'Jenis wajib diisi',
+        'jenis.max' => 'Jenis maksimal 45 karakter',
+        'foto.max' => 'Foto maksimal 2 MB',
+        'foto.mimes' => 'File ekstensi hanya bisa jpg, png, jpeg, gif, svg',
+        'foto.image' => 'File harus berbentuk image',
+    ]);
 
-        $product = Product::findOrFail($id);
+    $product = Product::findOrFail($id);
 
-        if ($request->hasFile('foto')) {
-            $fileName = 'foto-' . uniqid() . '.' . $request->foto->extension();
-            $request->foto->move(public_path('image'), $fileName);
+    // Handle upload foto baru
+    if ($request->hasFile('foto')) {
+        $fileName = 'foto-' . uniqid() . '.' . $request->foto->extension();
+        $request->foto->move(public_path('image'), $fileName);
 
-            if ($product->foto !== 'nophoto.jpg' && file_exists(public_path('image/' . $product->foto))) {
-                unlink(public_path('image/' . $product->foto));
-            }
-        } else {
-            $fileName = $product->foto;
+        // Hapus foto lama jika bukan default dan file-nya valid
+        $oldFotoPath = public_path('image/' . $product->foto);
+        if ($product->foto && $product->foto !== 'nophoto.jpg' && file_exists($oldFotoPath) && is_file($oldFotoPath)) {
+            unlink($oldFotoPath);
         }
-
-        $product->update([
-            'nama' => $request->nama,
-            'jenis' => $request->jenis,
-            'harga_jual' => $request->harga_jual,
-            'harga_beli' => $request->harga_beli,
-            'deskripsi' => $request->deskripsi,
-            'foto' => $fileName,
-        ]);
-
-        return redirect()->route('index.index')->with('success', 'Produk berhasil diperbarui.');
+    } else {
+        $fileName = $product->foto;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
-    {
-        $product = Product::findOrFail($id);
+    // Update data produk
+    $product->update([
+        'nama' => $request->nama,
+        'jenis' => $request->jenis,
+        'harga_jual' => $request->harga_jual,
+        'harga_beli' => $request->harga_beli,
+        'deskripsi' => $request->deskripsi,
+        'foto' => $fileName,
+    ]);
 
-        if ($product->foto !== 'nophoto.jpg' && file_exists(public_path('image/' . $product->foto))) {
-            unlink(public_path('image/' . $product->foto));
-        }
+    return redirect()->route('index.index')->with('success', 'Produk berhasil diperbarui.');
+}
+/**
+ * Remove the specified resource from storage.
+ */
+public function destroy(Product $id)
+{
+    $id->delete();
+    
+    return redirect()->route('index.index')
+            ->with('success','Data berhasil di hapus' );
+}
 
-        $product->delete();
-
-        return redirect()->route('index.index')->with('success', 'Produk berhasil dihapus.');
-    }
 }

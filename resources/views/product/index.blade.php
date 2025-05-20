@@ -60,32 +60,33 @@
                                 <a href="" class="btn btn-sm btn-secondary">show</a>
                                 <a href="{{ route('products.edit', $k->id) }}" class="btn btn-sm btn-warning">edit</a>
                                 <!-- Tombol Modal Hapus -->
-<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalHapus{{ $k->id }}">
-    hapus
+<button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{$k->id}}">
+Hapus
 </button>
+ 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal{{$k->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus Produk</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Apakah anda yakin akan menghapus data {{$k->nama}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
-<!-- Modal Konfirmasi Hapus -->
-<div class="modal fade" id="modalHapus{{ $k->id }}" tabindex="-1" role="dialog" aria-labelledby="modalLabel{{ $k->id }}" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <form action="{{ route('index.destroy', $k->id) }}" method="POST">
-        @csrf
-        @method('DELETE')
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalLabel{{ $k->id }}">Konfirmasi Hapus</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Tutup">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Yakin ingin menghapus produk <strong>{{ $k->nama }}</strong>?
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-            <button type="submit" class="btn btn-danger">Hapus</button>
-          </div>
-        </div>
-    </form>
+        <form action="{{ route('index.destroy', $k->id) }}" method="POST" style="display:inline;">
+          @csrf
+          @method('DELETE')
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+
+      </div>
+    </div>
   </div>
 </div>
                              </td>
