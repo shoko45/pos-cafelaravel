@@ -9,30 +9,43 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\UserController;
 
-//product
-Route::resource('products', ProductController::class);
-Route::get("/", [ProductController::class, 'index'])->name('index.index');
-Route::get('/product/create', [ProductController::class, 'create'])->name('index.create');
-Route::post('/product/store', [ProductController::class, 'store'])->name('index.store');
-Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('index.edit');
-Route::put('/products/{id}/update', [ProductController::class, 'update'])->name('index.update');
-route::delete('/produk/delete{id}', [ProductController::class, 'destroy'])->name('index.destroy');
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+*/
 
-//login
+// Halaman utama dialihkan ke daftar produk
+Route::get('/', [ProductController::class, 'index'])->name('products.index');
+
+// Product CRUD (pakai resource saja sudah cukup)
+Route::resource('products', ProductController::class);
+
+// Halaman dashboard
+Route::get('/', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+// Jika ingin custom route terpisah, pastikan konsisten:
+Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
+Route::put('/products/{id}/update', [ProductController::class, 'update'])->name('products.update');
+Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+
+
+// Login routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::get(' ', function () {
-    return view(' ');
-})->middleware(['auth']);
 
-
-//dll
-Route::get('/', function () {
-    return redirect()->route('users.index');
-});
+// Users
 Route::resource('users', UserController::class);
+
+// Category
 Route::resource('categories', CategoryController::class);
+
+// Customer
 Route::resource('customers', CustomerController::class);
-Route::resource('transaction-details', TransactionDetailController::class);
+
+// Transactions & Details
 Route::resource('transactions', TransactionController::class);
+Route::resource('transaction-details', TransactionDetailController::class);
