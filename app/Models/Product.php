@@ -12,8 +12,7 @@ class Product extends Model
         'nama',
         'jenis',
         'deskripsi',
-        'harga_jual',
-        'harga_beli',
+        'harga',
         'foto'
     ];
 

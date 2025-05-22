@@ -19,8 +19,7 @@
                         <th>No</th>
                         <th>Nama</th>
                         <th>Jenis</th>
-                        <th>Harga Jual</th>
-                        <th>Harga Beli</th>
+                        <th>Harga</th>
                         <th>Foto</th>
                         <th>Aksi</th>
                     </tr>
@@ -31,8 +30,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $k->nama }}</td>
                         <td>{{ $k->jenis }}</td>
-                        <td>{{ number_format($k->harga_jual, 0, ',', '.') }}</td>
-                        <td>{{ number_format($k->harga_beli, 0, ',', '.') }}</td>
+                        <td>{{ number_format($k->harga, 0, ',', '.') }}</td>
                         <td>
                             <img src="{{ url('image/' . ($k->foto ?? 'nophoto.jpg')) }}" alt="foto" style="max-width: 100px;">
                         </td>

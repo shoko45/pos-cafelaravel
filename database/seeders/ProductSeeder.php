@@ -17,9 +17,7 @@ class ProductSeeder extends Seeder
             [
                 'nama' => 'Produk 1',
                 'jenis' => 'Elektronik',
-                'deskripsi' => 'Deskripsi untuk Produk 1',
-                'harga_jual' => 1000000.00,
-                'harga_beli' => 800000.00,
+                'harga' => 1000000.00,
                 'foto' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -27,9 +25,7 @@ class ProductSeeder extends Seeder
             [
                 'nama' => 'Produk 2',
                 'jenis' => 'Pakaian',
-                'deskripsi' => 'Deskripsi untuk Produk 2',
-                'harga_jual' => 200000.00,
-                'harga_beli' => 150000.00,
+                'harga' => 200000.00,
                 'foto' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -37,9 +33,7 @@ class ProductSeeder extends Seeder
             [
                 'nama' => 'Produk 3',
                 'jenis' => 'Peralatan Rumah Tangga',
-                'deskripsi' => 'Deskripsi untuk Produk 3',
-                'harga_jual' => 300000.00,
-                'harga_beli' => 250000.00,
+                'harga' => 300000.00,
                 'foto' => null,
                 'created_at' => now(),
                 'updated_at' => now(),

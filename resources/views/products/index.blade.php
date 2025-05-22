@@ -15,8 +15,7 @@
                         <th>No</th>
                         <th>Nama</th>
                         <th>Jenis</th>
-                        <th>Harga Jual</th>
-                        <th>Harga Beli</th>
+                        <th>Harga</th>
                         <th>Foto</th>
                         <th width="280px">Aksi</th>
                     </tr>
@@ -27,8 +26,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $k->nama }}</td>
                         <td>{{ $k->jenis }}</td>
-                        <td>{{ $k->harga_jual }}</td>
-                        <td>{{ $k->harga_beli }}</td>
+                        <td>{{ $k->harga }}</td>
                         <td>
                             @empty($k->foto)
                                 <img src="{{ url('image/nophoto.jpg') }}" alt="nophoto" style="max-width: 100px;">
@@ -37,7 +35,6 @@
                             @endempty
                         </td>
                         <td>
-                            <a href="#" class="btn btn-sm btn-secondary">Show</a>
                             <a href="{{ route('products.edit', $k->id) }}" class="btn btn-sm btn-warning">Edit</a>
 
                             <!-- Tombol Modal Hapus -->

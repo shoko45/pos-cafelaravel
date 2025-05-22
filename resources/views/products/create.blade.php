@@ -29,22 +29,11 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="harga_jual">Harga Jual:</label>
-                        <input type="text" class="form-control @error('harga_jual') is-invalid @enderror" id="harga_jual" name="harga_jual" value="{{ old('harga_jual') }}">
-                        @error('harga_jual')
+                        <label for="harga">Harga Jual:</label>
+                        <input type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="{{ old('harga') }}">
+                        @error('harga')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="harga_beli">Harga Beli:</label>
-                        <input type="text" class="form-control @error('harga_beli') is-invalid @enderror" id="harga_beli" name="harga_beli" value="{{ old('harga_beli') }}">
-                        @error('harga_beli')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="deskripsi">Deskripsi:</label>
-                        <textarea class="form-control" id="deskripsi" name="deskripsi">{{ old('deskripsi') }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="foto">Foto Produk:</label>

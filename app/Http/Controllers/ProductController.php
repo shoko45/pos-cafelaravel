@@ -116,9 +116,7 @@ class ProductController extends Controller
     $product->update([
         'nama' => $request->nama,
         'jenis' => $request->jenis,
-        'harga_jual' => $request->harga_jual,
-        'harga_beli' => $request->harga_beli,
-        'deskripsi' => $request->deskripsi,
+        'harga' => $request->harga,
         'foto' => $fileName,
     ]);
 
