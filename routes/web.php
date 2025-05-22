@@ -14,22 +14,12 @@ use App\Http\Controllers\UserController;
 | Web Routes
 |--------------------------------------------------------------------------
 */
-
-// Halaman utama dialihkan ke daftar produk
-Route::get('/', [ProductController::class, 'index'])->name('products.index');
-
-// Product CRUD (pakai resource saja sudah cukup)
+//product
 Route::resource('products', ProductController::class);
 
-// Halaman dashboard
 Route::get('/', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-// Jika ingin custom route terpisah, pastikan konsisten:
-Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
-Route::put('/products/{id}/update', [ProductController::class, 'update'])->name('products.update');
-Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+});
 
 
 // Login routes

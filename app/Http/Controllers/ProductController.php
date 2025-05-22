@@ -14,7 +14,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('product.index', compact('products'));
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -22,7 +22,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        return view('products.create');
     }
 
     /**
@@ -62,7 +62,7 @@ class ProductController extends Controller
             'foto' => $fileName,
         ]);
 
-        return redirect()->route('index.index')->with('success', 'Produk berhasil ditambahkan.');
+        return redirect()->route('products.index')->with('success', 'Produk berhasil ditambahkan.');
     }
 
     /**
@@ -71,7 +71,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-        return view('product.edit', compact('product'));
+        return view('products.edit', compact('product'));
     }
 
     /**
@@ -121,17 +121,25 @@ class ProductController extends Controller
         'foto' => $fileName,
     ]);
 
-    return redirect()->route('index.index')->with('success', 'Produk berhasil diperbarui.');
+    return redirect()->route('products.index')->with('success', 'Produk berhasil diperbarui.');
 }
 /**
  * Remove the specified resource from storage.
  */
-public function destroy(Product $id)
+public function destroy($id)
 {
-    $id->delete();
-    
-    return redirect()->route('index.index')
-            ->with('success','Data berhasil di hapus' );
-}
+    $product = Product::findOrFail($id);
 
+    // Hapus foto dari folder jika bukan foto default
+    $fotoPath = public_path('image/' . $product->foto);
+    if ($product->foto && $product->foto !== 'nophoto.jpg' && file_exists($fotoPath) && is_file($fotoPath)) {
+        unlink($fotoPath);
+    }
+
+    // Hapus data produk dari database
+    $product->delete();
+
+    return redirect()->route('products.index')
+        ->with('success', 'Produk berhasil dihapus.');
+}
 }
